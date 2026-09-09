@@ -3,202 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic & Professional Portfolio</title>
+    <title>Cybersecurity Portfolio & Showcase</title>
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-            padding: 40px 20px;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Views management */
+        .view {
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .view.active {
             display: flex;
+            opacity: 1;
+            position: relative;
+        }
+
+        /* Landing Page Style */
+        #landing-view {
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1f35 0%, #0b0f19 100%);
+            padding: 20px;
+            height: 100vh;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            color: #9ca3af;
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            max-width: 500px;
+        }
+
+        .enter-btn {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        /* Dashboard Showcase View Style */
+        #dashboard-view {
+            flex-direction: column;
+            background-color: #0b0f19;
+            padding: 40px 20px;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-header p {
+            color: #9ca3af;
+            font-size: 0.95rem;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             width: 100%;
+            margin: 0 auto;
         }
 
-        header {
-            text-align: left;
-            margin-bottom: 50px;
-            border-bottom: 1px solid #21262d;
-            padding-bottom: 30px;
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            color: #f0f6fc;
-            margin-bottom: 8px;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-        }
-
-        header p {
-            color: #8b949e;
-            font-size: 1.05rem;
-        }
-
-        .section-title {
-            font-size: 1.25rem;
-            color: #58a6ff;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .grid {
+        .grid-sections {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 45px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .card {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 20px;
-            transition: border-color 0.2s ease, transform 0.2s ease;
+            background: rgba(17, 24, 39, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .card:hover {
-            border-color: #58a6ff;
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            border-color: rgba(96, 165, 250, 0.4);
         }
 
         .card h3 {
-            font-size: 1rem;
-            color: #f0f6fc;
-            margin-bottom: 6px;
-            font-weight: 600;
+            font-size: 1.3rem;
+            color: #60a5fa;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .card p {
-            font-size: 0.85rem;
-            color: #8b949e;
-            line-height: 1.4;
+        .card ul {
+            list-style: none;
         }
 
-        .list-container {
-            margin-bottom: 45px;
-        }
-
-        .list-item {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 18px 24px;
-            margin-bottom: 12px;
+        .card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #d1d5db;
+            font-size: 0.95rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .list-item-info h4 {
-            font-size: 1rem;
-            color: #f0f6fc;
-            margin-bottom: 4px;
-            font-weight: 600;
+        .card ul li:last-child {
+            border-bottom: none;
         }
 
-        .list-item-info p {
-            font-size: 0.85rem;
-            color: #8b949e;
-        }
-
-        .badge {
-            background-color: #1f6feb;
-            color: #ffffff;
-            padding: 4px 12px;
+        .badge-tag {
+            background: rgba(37, 99, 235, 0.2);
+            color: #93c5fd;
+            padding: 3px 10px;
             border-radius: 12px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        .badge-pending {
-            background-color: #21262d;
-            color: #8b949e;
-            border: 1px solid #30363d;
+        .back-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #9ca3af;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            align-self: flex-start;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
         }
 
         footer {
-            text-align: left;
-            color: #484f58;
-            margin-top: 60px;
+            text-align: center;
+            padding: 40px 0 20px;
+            color: #6b7280;
             font-size: 0.85rem;
-            border-top: 1px solid #21262d;
-            padding-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>Cybersecurity Portfolio</h1>
-            <p>Academic Achievements & Technical Documentation Archive</p>
-        </header>
-
-        <!-- Tech Stack & Platforms -->
-        <h2 class="section-title">Platforms & Technical Skills</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Cisco Networking Academy</h3>
-                <p>Networking and Security Coursework</p>
-            </div>
-            <div class="card">
-                <h3>TryHackMe</h3>
-                <p>Hands-on Security Labs and Practice</p>
-            </div>
-            <div class="card">
-                <h3>GitHub</h3>
-                <p>Version Control and Documentation Repository</p>
-            </div>
-            <div class="card">
-                <h3>Linux & Security Tools</h3>
-                <p>Fundamentals and System Utilities</p>
-            </div>
+    <!-- Landing Page View -->
+    <div id="landing-view" class="view active">
+        <div>
+            <h1 class="hero-title">Welcome To My Portfolio</h1>
+            <p class="hero-subtitle">Cybersecurity Student & Technical Showcase</p>
+            <button class="enter-btn" onclick="openDashboard()">Explore Portfolio</button>
         </div>
-
-        <!-- Certifications -->
-        <h2 class="section-title">Certifications</h2>
-        <div class="list-container">
-            <div class="list-item">
-                <div class="list-item-info">
-                    <h4>Introduction to Cybersecurity</h4>
-                    <p>Cisco Networking Academy</p>
-                </div>
-                <span class="badge">Completed</span>
-            </div>
-        </div>
-
-        <!-- Academic Projects -->
-        <h2 class="section-title">Academic Archive</h2>
-        <div class="list-container">
-            <div class="list-item">
-                <div class="list-item-info">
-                    <h4>University Coursework & Projects</h4>
-                    <p>Academic Lab Reports and Capstone Documentation</p>
-                </div>
-                <span class="badge badge-pending">In Progress</span>
-            </div>
-        </div>
-
-        <footer>
-            <p>&copy; 2026 Academic & Technical Archive. All rights reserved.</p>
-        </footer>
     </div>
 
+    <!-- Dashboard View -->
+    <div id="dashboard-view" class="view">
+        <div class="container">
+            <button class="back-btn" onclick="openLanding()">← Back</button>
+            
+            <div class="dashboard-header">
+                <h1>Professional Showcase</h1>
+                <p>Explore my technical expertise, projects, certifications, and active operations.</p>
+            </div>
+
+            <div class="grid-sections">
+                <!-- Core Skills -->
+                <div class="card">
+                    <h3>🛡️ Technical Skills</h3>
+                    <ul>
+                        <li>Web Application Security <span class="badge-tag">Advanced</span></li>
+                        <li>Penetration Testing <span class="badge-tag">Intermediate</span></li>
+                        <li>Network Security & Protocols <span class="badge-tag">Advanced</span></li>
+                        <li>Linux System Administration <span class="badge-tag">Proficient</span></li>
+                    </ul>
+                </div>
+
+                <!-- Projects -->
+                <div class="card">
+                    <h3>💻 Key Projects</h3>
+                    <ul>
+                        <li>Smart Sand IoT Prototype <span class="badge-tag">Awarded</span></li>
+                        <li>Vulnerability Assessment Lab <span class="badge-tag">Completed</span></li>
+                        <li>Secure Network Topology Design <span class="badge-tag">Active</span></li>
+                    </ul>
+                </div>
+
+                <!-- Certifications -->
+                <div class="card">
+                    <h3>📜 Certifications</h3>
+                    <ul>
+                        <li>Foundational Cybersecurity <span class="badge-tag">Verified</span></li>
+                        <li>Networking Essentials (Cisco) <span class="badge-tag">Certified</span></li>
+                        <li>Operating System Security <span class="badge-tag">Completed</span></li>
+                    </ul>
+                </div>
+
+                <!-- Badges & Labs -->
+                <div class="card">
+                    <h3>🏆 Badges & Achievements</h3>
+                    <ul>
+                        <li>TryHackMe Rooms Solver <span class="badge-tag">Top 10%</span></li>
+                        <li>PortSwigger Academy Labs <span class="badge-tag">Active</span></li>
+                        <li>University Hackathon Winner <span class="badge-tag">1st Place</span></li>
+                    </ul>
+                </div>
+
+                <!-- Live Operations -->
+                <div class="card">
+                    <h3>⚡ Live Operations</h3>
+                    <ul>
+                        <li>GitHub Portfolio Deployment <span class="badge-tag" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7;">Online</span></li>
+                        <li>Security Research Notes <span class="badge-tag">Updating</span></li>
+                        <li>Bug Bounty Practical Logs <span class="badge-tag">Ongoing</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <footer>
+                <p>&copy; 2026 Cybersecurity Portfolio. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function openDashboard() {
+            document.getElementById('landing-view').classList.remove('active');
+            document.getElementById('dashboard-view').classList.add('active');
+        }
+
+        function openLanding() {
+            document.getElementById('dashboard-view').classList.remove('active');
+            document.getElementById('landing-view').classList.add('active');
+        }
+    </script>
 </body>
 </html>
