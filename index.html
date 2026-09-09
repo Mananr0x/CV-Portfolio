@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic & Professional Portfolio</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        header {
+            text-align: left;
+            margin-bottom: 50px;
+            border-bottom: 1px solid #21262d;
+            padding-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: #8b949e;
+            font-size: 1.05rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            color: #58a6ff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 45px;
+        }
+
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: #58a6ff;
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            color: #f0f6fc;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: #8b949e;
+            line-height: 1.4;
+        }
+
+        .list-container {
+            margin-bottom: 45px;
+        }
+
+        .list-item {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 18px 24px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-item-info h4 {
+            font-size: 1rem;
+            color: #f0f6fc;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .list-item-info p {
+            font-size: 0.85rem;
+            color: #8b949e;
+        }
+
+        .badge {
+            background-color: #1f6feb;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-pending {
+            background-color: #21262d;
+            color: #8b949e;
+            border: 1px solid #30363d;
+        }
+
+        footer {
+            text-align: left;
+            color: #484f58;
+            margin-top: 60px;
+            font-size: 0.85rem;
+            border-top: 1px solid #21262d;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Cybersecurity Portfolio</h1>
+            <p>Academic Achievements & Technical Documentation Archive</p>
+        </header>
+
+        <!-- Tech Stack & Platforms -->
+        <h2 class="section-title">Platforms & Technical Skills</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Cisco Networking Academy</h3>
+                <p>Networking and Security Coursework</p>
+            </div>
+            <div class="card">
+                <h3>TryHackMe</h3>
+                <p>Hands-on Security Labs and Practice</p>
+            </div>
+            <div class="card">
+                <h3>GitHub</h3>
+                <p>Version Control and Documentation Repository</p>
+            </div>
+            <div class="card">
+                <h3>Linux & Security Tools</h3>
+                <p>Fundamentals and System Utilities</p>
+            </div>
+        </div>
+
+        <!-- Certifications -->
+        <h2 class="section-title">Certifications</h2>
+        <div class="list-container">
+            <div class="list-item">
+                <div class="list-item-info">
+                    <h4>Introduction to Cybersecurity</h4>
+                    <p>Cisco Networking Academy</p>
+                </div>
+                <span class="badge">Completed</span>
+            </div>
+        </div>
+
+        <!-- Academic Projects -->
+        <h2 class="section-title">Academic Archive</h2>
+        <div class="list-container">
+            <div class="list-item">
+                <div class="list-item-info">
+                    <h4>University Coursework & Projects</h4>
+                    <p>Academic Lab Reports and Capstone Documentation</p>
+                </div>
+                <span class="badge badge-pending">In Progress</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Academic & Technical Archive. All rights reserved.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
